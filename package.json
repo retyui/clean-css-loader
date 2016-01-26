@@ -1,0 +1,30 @@
+{
+  "name": "clean-css-loader",
+  "version": "0.0.1",
+  "description": "CleanCSS webpack loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/retyui/clean-css-loader.git"
+  },
+  "keywords": [
+    "CleanCSS",
+    "webpack",
+    "webpack-loader",
+    "loader",
+    "clean-css-loader"
+  ],
+  "author": "retyui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/retyui/clean-css-loader/issues"
+  },
+  "homepage": "https://github.com/retyui/clean-css-loader#readme",
+  "dependencies": {
+    "clean-css": "^3.4.9",
+    "loader-utils": "^0.2.12"
+  }
+}
