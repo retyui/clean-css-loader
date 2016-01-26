@@ -1,0 +1,14 @@
+{
+  "name": "webpack1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --target node"
+  },
+  "devDependencies": {
+    "css-loader": "0.14.0",
+    "raw-loader": "0.5.1",
+    "webpack": "1.15.0"
+  }
+}

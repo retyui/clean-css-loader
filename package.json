@@ -1,30 +1,58 @@
 {
   "name": "clean-css-loader",
-  "version": "0.0.1",
-  "description": "CleanCSS webpack loader",
-  "main": "index.js",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "dependencies": {
+    "clean-css": "^4.1.9",
+    "loader-utils": "^1.1.0"
+  },
+  "peerDependencies": {
+    "webpack": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update-e2e": "reset ; yarn build ; yarn e2e; yarn test",
+    "force-clean": "rimraf ./test/e2e/webpack*/node_modules/ ./test/e2e/webpack*/tests/**/*.test.js",
+    "install-sub": "yarn link ; cd ./test/e2e/webpack1 ; yarn ; yarn link clean-css-loader ; yarn build ; cd ../webpack4 ; yarn ; yarn link clean-css-loader ; yarn build ; cd ../../..",
+    "e2e": "yarn force-clean ; yarn install-sub",
+    "prebuild": "rimraf ./lib",
+    "build": "babel src --out-dir lib",
+    "pretest": "yarn build",
+    "test": "jest",
+    "coverage": "nyc --clean jest --coverage",
+    "precommit": "lint-staged"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/retyui/clean-css-loader.git"
-  },
+  "description": "CleanCSS loader module for webpack",
   "keywords": [
     "CleanCSS",
     "webpack",
-    "webpack-loader",
-    "loader",
-    "clean-css-loader"
+    "loader"
   ],
-  "author": "retyui",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/retyui/clean-css-loader/issues"
+  "repository": "https://github.com/retyui/clean-css-loader",
+  "author": "David <vamnemne@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
   },
-  "homepage": "https://github.com/retyui/clean-css-loader#readme",
-  "dependencies": {
-    "clean-css": "^3.4.9",
-    "loader-utils": "^0.2.12"
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "0.14.3",
+    "jest": "^22.4.3",
+    "lint-staged": "7.0.5",
+    "npm-run-all": "^4.1.2",
+    "nyc": "^11.7.1",
+    "prettier": "1.12.1",
+    "rimraf": "^2.6.1"
   }
 }
