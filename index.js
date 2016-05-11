@@ -11,7 +11,7 @@ module.exports = function (css, map) {
 
 	new CleanCSS(cleanCssOpti).minify(css, function (err, minified) {
 		if ( err ) {
-			if (Array.isArray(err) && (arr[0] != null)) {
+			if (Array.isArray(err) && (err[0] != null)) {
 				return callback(err[0]);
 			}else{
 				return callback(err);
