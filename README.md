@@ -115,3 +115,5 @@ More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](h
     }
   }
 ```
+
+[![NPM](https://nodei.co/npm-dl/clean-css-loader.png?height=3)](https://nodei.co/npm/clean-css-loader/)
