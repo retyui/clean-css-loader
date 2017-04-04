@@ -4,8 +4,8 @@ var loaderUtils = require('loader-utils');
 module.exports = function(css, map) {
 
 	var opti = this.options ? this.options.module : false;
-	var query = loaderUtils.getOptions(this) || {};
-	var cleanCssOpti = opti ? (opti.cleancss || opti['clean-css'] || opti.CleanCSS || {}) : query;
+	var query = loaderUtils.getOptions(this);
+	var cleanCssOpti = query || (opti ? (opti.cleancss || opti['clean-css'] || opti.CleanCSS) : false) || {};
 	var loader = this;
 	var callback = this.async();
 
