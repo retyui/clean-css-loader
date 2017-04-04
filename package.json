@@ -1,26 +1,27 @@
 {
-	"name": "clean-css-loader"
-	, "version": "0.0.1"
-	, "description": "CleanCSS webpack loader"
-	, "main": "index.js"
-	, "repository": {
-		"type": "git"
-		, "url": "git+https://github.com/retyui/clean-css-loader.git"
-	}
-	, "keywords": [
-		"CleanCSS"
-		, "webpack"
-		, "webpack-loader"
-		, "loader"
-		, "clean-css-loader"
-	]
-	, "author": "retyui"
-	, "license": "ISC"
-	, "bugs": {
-		"url": "https://github.com/retyui/clean-css-loader/issues"
-	}
-	, "homepage": "https://github.com/retyui/clean-css-loader#readme"
-	, "dependencies": {
-		"clean-css": "^4.0.1"
-	}
+  "name": "clean-css-loader",
+  "version": "0.0.4",
+  "description": "CleanCSS webpack loader",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/retyui/clean-css-loader.git"
+  },
+  "keywords": [
+    "CleanCSS",
+    "webpack",
+    "webpack-loader",
+    "loader",
+    "clean-css-loader"
+  ],
+  "author": "retyui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/retyui/clean-css-loader/issues"
+  },
+  "homepage": "https://github.com/retyui/clean-css-loader#readme",
+  "dependencies": {
+    "clean-css": "^4.0.11",
+    "loader-utils": "^1.1.0"
+  }
 }

@@ -1,10 +1,11 @@
 var CleanCSS = require('clean-css');
-
+var loaderUtils = require('loader-utils');
 
 module.exports = function(css, map) {
 
-	var opti = this.options.module;
-	var cleanCssOpti = opti.cleancss || opti['clean-css'] || opti.CleanCSS || {};
+	var opti = this.options ? this.options.module : false;
+	var query = loaderUtils.getOptions(this) || {};
+	var cleanCssOpti = opti ? (opti.cleancss || opti['clean-css'] || opti.CleanCSS || {}) : query;
 	var loader = this;
 	var callback = this.async();
 
