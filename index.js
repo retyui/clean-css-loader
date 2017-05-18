@@ -9,7 +9,7 @@ module.exports = function(css, map) {
 	var loader = this;
 	var callback = this.async();
 
-	new CleanCSS(cleanCssOpti).minify(css, function(err, minified) {
+	new CleanCSS(cleanCssOpti).minify(css, map, function(err, minified) {
 		if (err) {
 			if (Array.isArray(err) && (err[0] != null)) {
 				return callback(err[0]);
