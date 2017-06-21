@@ -1,0 +1,10 @@
+.editorconfig
+.eslintrc.json
+.git
+.gitignore
+.npmignore
+.travis.yml
+.babelrc
+yarn.lock
+lib/
+test/

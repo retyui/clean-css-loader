@@ -10,20 +10,13 @@
 
 A [clean-css](https://github.com/jakubpawlowicz/clean-css) loader for [webpack](https://github.com/webpack/webpack).
 
-[![npm version](https://badge.fury.io/js/clean-css-loader.svg)](https://badge.fury.io/js/clean-css-loader)
+# Clean-CSS-loader [![Build Status](https://travis-ci.org/retyui/clean-css-loader.svg?branch=master)](https://travis-ci.org/retyui/clean-css-loader) [![npm version](https://badge.fury.io/js/clean-css-loader.svg)](https://badge.fury.io/js/clean-css-loader) [![dependencies Status](https://david-dm.org/retyui/clean-css-loader/status.svg)](https://david-dm.org/retyui/clean-css-loader)
 
 
-<h2 align="center">Install</h2>
+## Install
+`npm i -D clean-css-loader` <em>or</em> `yarn add clean-css-loader --dev`
 
-```bash
-npm install --save-dev clean-css-loader
-```
-<em>or</em>
-```bash
-yarn add clean-css-loader --dev
-```
-
-<h2 align="center">Usage</h2>
+## Usage
 
 Use the loader either via your webpack config, CLI or inline.
 
@@ -33,12 +26,12 @@ Use the loader either via your webpack config, CLI or inline.
 ```js
 const production = false;
 
-let css_arr_use = [ 'style-loader', 'css-loader' ];
+const cssUseList = [ 'style-loader', 'css-loader' ];
 
 if(production){
-  css_arr_use.push('clean-css-loader');
+  cssUseList.push('clean-css-loader');
   // or
-  css_arr_use.push({
+  cssUseList.push({
     loader: 'clean-css-loader',
     options: {
       compatibility: 'ie9',
@@ -53,7 +46,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: css_arr_use
+        use: cssUseList
       }
     ]
   }
@@ -62,7 +55,7 @@ module.exports = {
 
 **In your application**
 ```js
-import css_min from 'style.css';
+import cssMin from 'style.css';
 ```
 
 ### CLI
@@ -73,25 +66,22 @@ webpack --module-bind 'css=style-loader!css-loader!clean-css-loader'
 
 **In your application**
 ```js
-import css_min from 'style.css';
+import cssMin from 'style.css';
 ```
 
 ### Inline
 
 **In your application**
 ```js
-import css_min from 'style-loader!css-loader!clean-css-loader!./style.css';
+import cssMin from 'style-loader!css-loader!clean-css-loader!./style.css';
 ```
 
 
-<h2 align="center">Options</h2>
+## Options
 
 More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](https://github.com/jakubpawlowicz/clean-css#constructor-options)
 
-
-
-
-
+## Webpack 1.x
 
 **Example config (for webpack 1.x):**
 ```js
@@ -116,4 +106,4 @@ More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](h
   }
 ```
 
-[![NPM](https://nodei.co/npm-dl/clean-css-loader.png?height=3)](https://nodei.co/npm/clean-css-loader/)
+[![NPM](https://nodei.co/npm-dl/clean-css-loader.png)](https://nodei.co/npm/clean-css-loader/)

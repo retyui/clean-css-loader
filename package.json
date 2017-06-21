@@ -1,27 +1,49 @@
 {
-  "name": "clean-css-loader",
-  "version": "0.0.6",
-  "description": "CleanCSS webpack loader",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/retyui/clean-css-loader.git"
-  },
-  "keywords": [
-    "CleanCSS",
-    "webpack",
-    "webpack-loader",
-    "loader",
-    "clean-css-loader"
-  ],
-  "author": "retyui",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/retyui/clean-css-loader/issues"
-  },
-  "homepage": "https://github.com/retyui/clean-css-loader#readme",
-  "dependencies": {
-    "clean-css": "^4.0.11",
-    "loader-utils": "^1.1.0"
-  }
+	"name": "clean-css-loader",
+	"version": "0.1.0",
+	"description": "CleanCSS loader module for webpack",
+	"main": "dist/index.js",
+	"scripts": {
+		"test:clean": "rimraf ./test/tmp ./test/node_modules ./test/bundle.js ./test/package.json ./test/package-lock.json && cd test && mkdir node_modules && echo {} > package.json",
+		"pretest:webpack:1": "npm run test:clean && cd test && npm i css-loader@0.14.0 raw-loader@0.5.1 testem@0.8.3 webpack@1 ./.. && \"./node_modules/.bin/webpack\" --config webpack@1.config.js",
+		"pretest:webpack:3": "npm run test:clean && cd test && npm i css-loader raw-loader testem webpack@3 ./.. && \"./node_modules/.bin/webpack\" --config webpack@3.config.js",
+		"test:webpack:1": "cd ./test/tmp && echo {\\\"framework\\\": \\\"mocha+chai\\\"} > testem.json && \"../node_modules/.bin/testem\" ci -l $browser",
+		"test:webpack:3": "cd ./test/tmp && echo {\\\"framework\\\": \\\"mocha+chai\\\"} > testem.json && \"../node_modules/.bin/testem\" ci -l $browser",
+		"pretest": "npm run compile",
+		"test": "echo $browser && npm run test:webpack:3 && npm run test:webpack:1",
+		"posttest": "npm run test:clean",
+		"lint": "eslint ./**/*.js",
+		"compile": "babel lib --out-dir dist"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/retyui/clean-css-loader.git"
+	},
+	"keywords": [
+		"CleanCSS",
+		"webpack",
+		"loader"
+	],
+	"author": {
+		"name": "David Narbutovich",
+		"email": "vamnemne@gmail.com",
+		"url": "https://github.com/retyui"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/retyui/clean-css-loader/issues"
+	},
+	"homepage": "https://github.com/retyui/clean-css-loader#readme",
+	"dependencies": {
+		"clean-css": "^4.1.4",
+		"loader-utils": "^1.1.0"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.24.1",
+		"babel-eslint": "^7.2.3",
+		"babel-plugin-add-module-exports": "^0.2.1",
+		"babel-preset-env": "^1.5.2",
+		"babel-register": "^6.24.1",
+		"rimraf": "^2.6.1"
+	}
 }
