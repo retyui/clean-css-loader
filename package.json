@@ -1,6 +1,6 @@
 {
 	"name": "clean-css-loader",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "CleanCSS loader module for webpack",
 	"main": "dist/index.js",
 	"scripts": {
