@@ -79,6 +79,9 @@ import cssMin from 'style-loader!css-loader!clean-css-loader!./style.css';
 
 ## Options
 
+### `skipWarn` default: `false`
+This option disable output warnings
+
 More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](https://github.com/jakubpawlowicz/clean-css#constructor-options)
 
 ## Webpack 1.x
