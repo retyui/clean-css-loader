@@ -14,16 +14,14 @@ A [clean-css](https://github.com/jakubpawlowicz/clean-css) loader for [webpack](
 [![npm](https://img.shields.io/npm/v/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
 [![npm clean-css-loader](https://img.shields.io/npm/dm/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
 [![Build Status](https://travis-ci.org/retyui/clean-css-loader.svg?branch=master)](https://travis-ci.org/retyui/clean-css-loader)
+[![Code Climate](https://codeclimate.com/github/retyui/clean-css-loader/badges/gpa.svg)](https://codeclimate.com/github/retyui/clean-css-loader)
+[![Test Coverage](https://codeclimate.com/github/retyui/clean-css-loader/badges/coverage.svg)](https://codeclimate.com/github/retyui/clean-css-loader/coverage)
 [![Greenkeeper badge](https://badges.greenkeeper.io/retyui/clean-css-loader.svg)](https://greenkeeper.io/)
 
 ## Install
 
 ```bash
-# for webpack@4 or 3 or 2
 yarn add -D clean-css-loader
-
-# for webpack@1.x
-yarn add -D clean-css-loader@0.14.0
 ```
 
 ## Usage

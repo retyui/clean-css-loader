@@ -60,3 +60,4 @@ typings/
 # my
 lib/
 .idea/
+cc-test-reporter

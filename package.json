@@ -1,6 +1,6 @@
 {
   "name": "clean-css-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "dependencies": {
     "clean-css": "^4.1.9",
@@ -16,9 +16,10 @@
     "e2e": "yarn force-clean ; yarn install-sub",
     "prebuild": "rimraf ./lib",
     "build": "babel src --out-dir lib",
+    "format": "prettier  \"test/unit/*.js\" \"src/*.js\" \"./*.js\" --write",
     "pretest": "yarn build",
     "test": "jest",
-    "coverage": "nyc --clean jest --coverage",
+    "coverage": "rimraf ./coverage; yarn test --coverage",
     "precommit": "lint-staged"
   },
   "description": "CleanCSS loader module for webpack",
@@ -34,7 +35,7 @@
     "lib"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -51,7 +52,6 @@
     "jest": "^22.4.3",
     "lint-staged": "7.0.5",
     "npm-run-all": "^4.1.2",
-    "nyc": "^11.7.1",
     "prettier": "1.12.1",
     "rimraf": "^2.6.1"
   }

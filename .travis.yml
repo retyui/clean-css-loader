@@ -1,17 +1,17 @@
 sudo: false
 language: node_js
 node_js:
-  - "10"
-  - "8"
+#  - "10"
+#  - "8"
   - "6"
 install:
   - yarn
 script:
-  - yarn test
+  - yarn coverage
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=ABC123
+    - CC_TEST_REPORTER_ID=8277f64d4123c1ec9bafeb8c2db8a72403277f27a1419f944d013951318db00e
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0

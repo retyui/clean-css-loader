@@ -14,10 +14,7 @@ export default function cleanCssLoader(css, map) {
 
 	return new CleanCSS(cleanCssOptions).minify(css, map, (err, minified) => {
 		if (err) {
-			if (Array.isArray(err) && err[0]) {
-				return callback(err[0]);
-			}
-			return callback(err);
+			return callback(err[0]);
 		}
 
 		if (!cleanCssOptions.skipWarn && Array.isArray(minified.warnings)) {

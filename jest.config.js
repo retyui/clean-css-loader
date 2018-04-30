@@ -1,3 +1,4 @@
 module.exports = {
-	coverageReporters: ["json"]
+	collectCoverageFrom: ["test/unit/*.js", "src/*.js"],
+	coverageReporters: ["lcov", "html"]
 };

@@ -1,11 +1,8 @@
 module.exports = {
 	root: true,
 	parser: "babel-eslint",
-	plugins: [
-		"import",
-		"prettier"
-	],
-	"extends": [
+	plugins: ["import", "prettier"],
+	extends: [
 		"webpack",
 		"plugin:import/errors",
 		"plugin:import/warnings",
@@ -20,7 +17,7 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: 2017
 	},
-	rules:{
-		'no-unused-vars': 'warn'
+	rules: {
+		"no-unused-vars": "warn"
 	}
 };
