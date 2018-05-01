@@ -1,14 +1,8 @@
 module.exports = {
 	root: true,
 	parser: "babel-eslint",
-	plugins: ["import", "prettier"],
-	extends: [
-		"webpack",
-		"plugin:import/errors",
-		"plugin:import/warnings",
-		"eslint:recommended",
-		"plugin:prettier/recommended"
-	],
+	plugins: ["prettier"],
+	extends: ["webpack", "eslint:recommended", "plugin:prettier/recommended"],
 	env: {
 		node: true,
 		es6: true,

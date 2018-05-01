@@ -1,4 +1,4 @@
-/* eslint-disable no-useless-escape, import/no-webpack-loader-syntax, import/no-unresolved */
+/* eslint-disable no-useless-escape */
 
 const expectOutput = (output, result) =>
 	expect(output.replace(/\r\n/g, "\n")).toEqual(result);
