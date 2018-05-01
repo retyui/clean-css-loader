@@ -33,5 +33,4 @@ test_script:
   - yarn test
 
 cache:
- - node_modules
- - "%LOCALAPPDATA%/Yarn"
+  - node_modules -> appveyor.yml,yarn.lock
