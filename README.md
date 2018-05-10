@@ -16,7 +16,6 @@ A [clean-css](https://github.com/jakubpawlowicz/clean-css) loader for [webpack](
 [![Build Status](https://travis-ci.org/retyui/clean-css-loader.svg?branch=master)](https://travis-ci.org/retyui/clean-css-loader)
 [![Code Climate](https://codeclimate.com/github/retyui/clean-css-loader/badges/gpa.svg)](https://codeclimate.com/github/retyui/clean-css-loader)
 [![Test Coverage](https://codeclimate.com/github/retyui/clean-css-loader/badges/coverage.svg)](https://codeclimate.com/github/retyui/clean-css-loader/coverage)
-[![Greenkeeper badge](https://badges.greenkeeper.io/retyui/clean-css-loader.svg)](https://greenkeeper.io/)
 
 ## Install
 
