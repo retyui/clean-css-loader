@@ -1,57 +1,59 @@
 {
-  "name": "clean-css-loader",
-  "version": "1.0.1",
-  "main": "lib/index.js",
-  "dependencies": {
-    "clean-css": "^4.1.9",
-    "loader-utils": "^1.1.0"
-  },
-  "peerDependencies": {
-    "webpack": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
-  },
-  "scripts": {
-    "update-e2e": "reset ; yarn build ; yarn e2e; yarn test",
-    "force-clean": "rimraf ./test/e2e/webpack*/node_modules/ ./test/e2e/webpack*/tests/**/*.test.js",
-    "install-sub": "yarn link ; cd ./test/e2e/webpack1 ; yarn ; yarn link clean-css-loader ; yarn build ; cd ../webpack4 ; yarn ; yarn link clean-css-loader ; yarn build ; cd ../../..",
-    "e2e": "yarn force-clean ; yarn install-sub",
-    "prebuild": "rimraf ./lib",
-    "build": "babel src --out-dir lib",
-    "format": "prettier \".babelrc\" \"test/unit/*.js\" \"src/*.js\" \"./*.js\" --write",
-    "pretest": "yarn build",
-    "test": "jest",
-    "coverage": "rimraf ./coverage; yarn test --coverage",
-    "precommit": "lint-staged"
-  },
-  "description": "CleanCSS loader module for webpack",
-  "keywords": [
-    "CleanCSS",
-    "webpack",
-    "loader"
-  ],
-  "repository": "https://github.com/retyui/clean-css-loader",
-  "author": "David <vamnemne@gmail.com>",
-  "license": "MIT",
-  "files": [
-    "lib"
-  ],
-  "engines": {
-    "node": ">=6.11.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-config-webpack": "^1.2.5",
-    "eslint-plugin-prettier": "^2.6.0",
-    "husky": "0.14.3",
-    "jest": "^22.4.3",
-    "lint-staged": "7.0.5",
-    "npm-run-all": "^4.1.2",
-    "prettier": "1.12.1",
-    "rimraf": "^2.6.1"
-  }
+	"name": "clean-css-loader",
+	"version": "1.0.1",
+	"main": "lib/index.js",
+	"dependencies": {
+		"clean-css": "^4.2.1",
+		"loader-utils": "^1.1.0"
+	},
+	"peerDependencies": {
+		"webpack": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
+	},
+	"scripts": {
+		"e2e": "yarn build && yarn update-e2e && yarn test",
+		"force-clean": "rimraf ./test/e2e/webpack*/node_modules/ ./test/e2e/webpack*/tests/**/*.test.js",
+		"install-sub": "yarn link && cd ./test/e2e/webpack1 && yarn && yarn link clean-css-loader && yarn build && cd ../webpack4 && yarn && yarn link clean-css-loader && yarn build && cd ../../..",
+		"update-e2e": "yarn force-clean && yarn install-sub",
+		"prebuild": "rimraf ./lib",
+		"build": "babel src --out-dir lib",
+		"format": "prettier \".babelrc\" \"test/unit/*.js\" \"src/*.js\" \"./*.js\" --write",
+		"pretest": "yarn build",
+		"test": "jest",
+		"precommit": "lint-staged"
+	},
+	"description": "CleanCSS loader module for webpack",
+	"keywords": [
+		"CleanCSS",
+		"webpack",
+		"loader"
+	],
+	"repository": "https://github.com/retyui/clean-css-loader",
+	"author": "David <vamnemne@gmail.com>",
+	"license": "MIT",
+	"files": [
+		"lib"
+	],
+	"engines": {
+		"node": ">=6.11.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.0.0",
+		"@babel/core": "^7.1.0",
+		"@babel/preset-env": "^7.0.0",
+		"babel-core": "^7.0.0-bridge.0",
+		"babel-eslint": "^9.0.0",
+		"babel-jest": "^23.6.0",
+		"babel-plugin-add-module-exports": "^1.0.0",
+		"eslint": "^5.6.0",
+		"eslint-config-prettier": "^3.1.0",
+		"eslint-config-webpack": "^1.2.5",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-prettier": "^2.6.2",
+		"husky": "^1.0.0-rc.14",
+		"jest": "^23.6.0",
+		"lint-staged": "^7.3.0",
+		"npm-run-all": "^4.1.3",
+		"prettier": "^1.14.3",
+		"rimraf": "^2.6.1"
+	}
 }
