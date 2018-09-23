@@ -36,27 +36,27 @@ const production = false;
 const cssUseList = ["style-loader", "css-loader"];
 
 if (production) {
-	cssUseList.push("clean-css-loader");
-	// or with options
-	cssUseList.push({
-		loader: "clean-css-loader",
-		options: {
-			compatibility: "ie9",
-			level: 2,
-			inline: ["remote"]
-		}
-	});
+  cssUseList.push("clean-css-loader");
+  // or with options
+  cssUseList.push({
+    loader: "clean-css-loader",
+    options: {
+      compatibility: "ie9",
+      level: 2,
+      inline: ["remote"]
+    }
+  });
 }
 
 module.exports = {
-	module: {
-		rules: [
-			{
-				test: /\.css$/,
-				use: cssUseList
-			}
-		]
-	}
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: cssUseList
+      }
+    ]
+  }
 };
 ```
 
@@ -100,23 +100,23 @@ More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](h
 
 ```js
 module.exports = {
-	module: {
-		loaders: [
-			{
-				test: /\.css$/,
-				loader: "css!clean-css"
-			},
-			{
-				test: /\.styl$/,
-				loader: "css!clean-css!stylus?reslve url"
-			}
-			//...
-		],
-		// Example Set options (Key "clean-css" or cleancss or CleanCSS):
-		"clean-css": {
-			debug: true,
-			mediaMerging: true
-		}
-	}
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loader: "css!clean-css"
+      },
+      {
+        test: /\.styl$/,
+        loader: "css!clean-css!stylus?reslve url"
+      }
+      //...
+    ],
+    // Example Set options (Key "clean-css" or cleancss or CleanCSS):
+    "clean-css": {
+      debug: true,
+      mediaMerging: true
+    }
+  }
 };
 ```
