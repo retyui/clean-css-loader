@@ -19,7 +19,6 @@
     "format": "prettier \".babelrc\" \"test/unit/*.js\" \"src/*.js\" \"./*.js\" --write",
     "pretest": "yarn build",
     "test": "jest",
-    "coverage": "rimraf ./coverage; yarn test --coverage",
     "precommit": "lint-staged"
   },
   "description": "CleanCSS loader module for webpack",

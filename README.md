@@ -13,9 +13,8 @@ A [clean-css](https://github.com/jakubpawlowicz/clean-css) loader for [webpack](
 
 [![npm](https://img.shields.io/npm/v/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
 [![npm clean-css-loader](https://img.shields.io/npm/dm/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
-[![Build Status](https://travis-ci.org/retyui/clean-css-loader.svg?branch=master)](https://travis-ci.org/retyui/clean-css-loader)
-[![Code Climate](https://codeclimate.com/github/retyui/clean-css-loader/badges/gpa.svg)](https://codeclimate.com/github/retyui/clean-css-loader)
-[![Test Coverage](https://codeclimate.com/github/retyui/clean-css-loader/badges/coverage.svg)](https://codeclimate.com/github/retyui/clean-css-loader/coverage)
+[![AppVeyor](https://img.shields.io/appveyor/ci/retyui/clean-css-loader.svg?label=windows)](https://ci.appveyor.com/project/retyui/clean-css-loader)
+[![Travis](https://img.shields.io/travis/retyui/clean-css-loader.svg?label=unix)](https://travis-ci.org/retyui/clean-css-loader)
 
 ## Install
 
@@ -37,27 +36,27 @@ const production = false;
 const cssUseList = ["style-loader", "css-loader"];
 
 if (production) {
-    cssUseList.push("clean-css-loader");
-    // or with options
-    cssUseList.push({
-        loader: "clean-css-loader",
-        options: {
-            compatibility: "ie9",
-            level: 2,
-            inline: ["remote"]
-        }
-    });
+	cssUseList.push("clean-css-loader");
+	// or with options
+	cssUseList.push({
+		loader: "clean-css-loader",
+		options: {
+			compatibility: "ie9",
+			level: 2,
+			inline: ["remote"]
+		}
+	});
 }
 
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: cssUseList
-            }
-        ]
-    }
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				use: cssUseList
+			}
+		]
+	}
 };
 ```
 
@@ -101,23 +100,23 @@ More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](h
 
 ```js
 module.exports = {
-    module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                loader: "css!clean-css"
-            },
-            {
-                test: /\.styl$/,
-                loader: "css!clean-css!stylus?reslve url"
-            }
-            //...
-        ],
-        // Example Set options (Key "clean-css" or cleancss or CleanCSS):
-        "clean-css": {
-            debug: true,
-            mediaMerging: true
-        }
-    }
+	module: {
+		loaders: [
+			{
+				test: /\.css$/,
+				loader: "css!clean-css"
+			},
+			{
+				test: /\.styl$/,
+				loader: "css!clean-css!stylus?reslve url"
+			}
+			//...
+		],
+		// Example Set options (Key "clean-css" or cleancss or CleanCSS):
+		"clean-css": {
+			debug: true,
+			mediaMerging: true
+		}
+	}
 };
 ```
