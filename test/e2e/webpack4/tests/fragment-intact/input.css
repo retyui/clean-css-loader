@@ -1,11 +1,11 @@
 .block-1 {
-    color: red
+	color: red;
 }
 /* clean-css ignore:start */
 .block-special {
-    color: transparent
+	color: transparent;
 }
 /* clean-css ignore:end */
 .block-2 {
-    margin: 0
+	margin: 0;
 }
