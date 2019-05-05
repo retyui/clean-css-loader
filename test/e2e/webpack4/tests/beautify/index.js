@@ -1,5 +1,5 @@
 it("beautify", function() {
-	expect(require("./input.css").replace(/\r\n/g, "\n")).toEqual(`.one {
+	expect(require("./input.css").default.replace(/\r\n/g, "\n")).toEqual(`.one {
   padding: 0
 }
 .two {

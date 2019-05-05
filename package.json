@@ -1,10 +1,10 @@
 {
 	"name": "clean-css-loader",
-	"version": "1.1.0",
+	"version": "2.0.0",
 	"main": "lib/index.js",
 	"dependencies": {
 		"clean-css": "^4.2.1",
-		"loader-utils": "^1.1.0"
+		"loader-utils": "^1.2.3"
 	},
 	"peerDependencies": {
 		"webpack": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
@@ -16,7 +16,6 @@
 		"update-e2e": "yarn force-clean && yarn install-sub",
 		"prebuild": "rimraf ./lib",
 		"build": "babel src --out-dir lib",
-		"format": "prettier \".babelrc\" \"test/unit/*.js\" \"src/*.js\" \"./*.js\" --write",
 		"pretest": "yarn build",
 		"test": "jest",
 		"precommit": "lint-staged"
@@ -34,26 +33,25 @@
 		"lib"
 	],
 	"engines": {
-		"node": ">=6.11.0"
+		"node": ">=8.0.0"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.0.0",
-		"@babel/core": "^7.1.0",
-		"@babel/preset-env": "^7.0.0",
-		"babel-core": "^7.0.0-bridge.0",
-		"babel-eslint": "^9.0.0",
-		"babel-jest": "^23.6.0",
-		"babel-plugin-add-module-exports": "^1.0.0",
-		"eslint": "^5.6.0",
-		"eslint-config-prettier": "^3.1.0",
+		"@babel/cli": "^7.4.4",
+		"@babel/core": "^7.4.4",
+		"@babel/preset-env": "^7.4.4",
+		"babel-eslint": "^10.0.1",
+		"babel-jest": "^24.8.0",
+		"babel-plugin-add-module-exports": "^1.0.2",
+		"eslint": "^5.16.0",
+		"eslint-config-prettier": "^4.2.0",
 		"eslint-config-webpack": "^1.2.5",
-		"eslint-plugin-import": "^2.14.0",
-		"eslint-plugin-prettier": "^2.6.2",
-		"husky": "^1.0.0-rc.14",
-		"jest": "^23.6.0",
-		"lint-staged": "^7.3.0",
-		"npm-run-all": "^4.1.3",
-		"prettier": "^1.14.3",
-		"rimraf": "^2.6.1"
+		"eslint-plugin-import": "^2.17.2",
+		"eslint-plugin-prettier": "^3.0.1",
+		"husky": "^2.2.0",
+		"jest": "^24.8.0",
+		"lint-staged": "^8.1.6",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^1.17.0",
+		"rimraf": "^2.6.3"
 	}
 }
