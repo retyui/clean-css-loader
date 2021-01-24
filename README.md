@@ -1,9 +1,8 @@
 <div align="center">
-    <img src="https://cdn.rawgit.com/jakubpawlowicz/clean-css/master/logo.v2.svg" alt="clean-css logo" width="500"/>
+    <img src="https://cdn.rawgit.com/jakubpawlowicz/clean-css/master/logo.v2.svg" alt="clean-css logo" width="400"/>
     <br>
     <a href="https://github.com/webpack/webpack">
-        <img width="200" height="200"
-            src="https://webpack.js.org/assets/icon-square-big.svg">
+        <img width="200" height="200" src="https://webpack.js.org/assets/icon-square-big.svg">
     </a>
 </div>
 
@@ -31,32 +30,35 @@ Use the loader either via your webpack config, CLI or inline.
 **webpack.config.js**
 
 ```js
-const production = false;
+const isProductionMode = process.env.NODE_ENV === "production";
 
-const cssUseList = ["style-loader", "css-loader"];
+const cssLoaders = ["style-loader", "css-loader"];
 
-if (production) {
-  cssUseList.push("clean-css-loader");
-  // or with options
-  cssUseList.push({
-    loader: "clean-css-loader",
-    options: {
-      compatibility: "ie9",
-      level: 2,
-      inline: ["remote"]
-    }
-  });
+if (isProductionMode) {
+	// push loader for production mode only
+	cssLoaders.push("clean-css-loader");
+
+	// exmaple with options
+	cssLoaders.push({
+		loader: "clean-css-loader",
+		options: {
+			compatibility: "ie9",
+			level: 2,
+			inline: ["remote"],
+		},
+	});
 }
 
 module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: cssUseList
-      }
-    ]
-  }
+	mode: isProductionMode ? "production" : "development",
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				use: cssLoaders,
+			},
+		],
+	},
 };
 ```
 
@@ -100,23 +102,23 @@ More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](h
 
 ```js
 module.exports = {
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: "css!clean-css"
-      },
-      {
-        test: /\.styl$/,
-        loader: "css!clean-css!stylus?reslve url"
-      }
-      //...
-    ],
-    // Example Set options (Key "clean-css" or cleancss or CleanCSS):
-    "clean-css": {
-      debug: true,
-      mediaMerging: true
-    }
-  }
+	module: {
+		loaders: [
+			{
+				test: /\.css$/,
+				loader: "css!clean-css",
+			},
+			{
+				test: /\.styl$/,
+				loader: "css!clean-css!stylus?reslve url",
+			},
+			//...
+		],
+		// Example Set options (Key "clean-css" or cleancss or CleanCSS):
+		"clean-css": {
+			debug: true,
+			mediaMerging: true,
+		},
+	},
 };
 ```

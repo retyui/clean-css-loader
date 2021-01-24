@@ -1,7 +1,7 @@
 import loader from "../../src/index";
 
 const runW1 = (input, module) =>
-	new Promise((res, rej) => {
+	new Promise((res) => {
 		const arrayWarn = [];
 		let options;
 		if (module) {
@@ -10,33 +10,28 @@ const runW1 = (input, module) =>
 		loader.call(
 			{
 				options,
-				// emitWarning: warnStr => arrayWarn.push(warnStr),
 				async: () => (err, css, map) => {
-					// if (err) {
-					// 	rej(err);
-					// } else {
 					res([css, map, arrayWarn]);
-					// }
-				}
+				},
 			},
 			input
 		);
 	});
 
-const runW4 = (input, options = {}) =>
+const runW5 = (input, options = {}) =>
 	new Promise((res, rej) => {
 		const arrayWarn = [];
 		loader.call(
 			{
 				query: options,
-				emitWarning: warnStr => arrayWarn.push(warnStr),
+				emitWarning: (warnStr) => arrayWarn.push(warnStr),
 				async: () => (err, css, map) => {
 					if (err) {
 						rej(err);
 					} else {
 						res([css, map, arrayWarn]);
 					}
-				}
+				},
 			},
 			input
 		);
@@ -50,7 +45,7 @@ describe("clean-css-loader", () => {
 			const [css, map, warn] = await runW1("div { background: white; }");
 			expectOutput(css, "div{background:#fff}");
 			expect(warn).toEqual([]);
-			expect(map).toEqual(undefined);
+			expect(map).toBeUndefined();
 		});
 
 		it("should return restructured css CleanCSS", async () => {
@@ -70,31 +65,31 @@ describe("clean-css-loader", () => {
 						level: {
 							1: {
 								all: true,
-								normalizeUrls: false
+								normalizeUrls: false,
 							},
 							2: {
-								restructureRules: true
-							}
-						}
-					}
+								restructureRules: true,
+							},
+						},
+					},
 				}
 			);
 			expectOutput(css, ".two{margin:0}.one{padding:0;margin-bottom:3px}");
 			expect(warn).toEqual([]);
-			expect(map).toEqual(undefined);
+			expect(map).toBeUndefined();
 		});
 	});
 
 	describe("webpack 4", () => {
 		it("should minimize css", async () => {
-			const [css, map, warn] = await runW4("div { background: white; }");
+			const [css, map, warn] = await runW5("div { background: white; }");
 			expectOutput(css, "div{background:#fff}");
 			expect(warn).toEqual([]);
-			expect(map).toEqual(undefined);
+			expect(map).toBeUndefined();
 		});
 
 		it("should return restructured css", async () => {
-			const [css, map, warn] = await runW4(
+			const [css, map, warn] = await runW5(
 				`.one {
 	padding: 0;
 }
@@ -109,22 +104,22 @@ describe("clean-css-loader", () => {
 					level: {
 						1: {
 							all: true,
-							normalizeUrls: false
+							normalizeUrls: false,
 						},
 						2: {
-							restructureRules: true
-						}
-					}
+							restructureRules: true,
+						},
+					},
 				}
 			);
 			expectOutput(css, ".two{margin:0}.one{padding:0;margin-bottom:3px}");
 			expect(warn).toEqual([]);
-			expect(map).toEqual(undefined);
+			expect(map).toBeUndefined();
 		});
 
 		it("should throw error", async () => {
 			try {
-				await runW4(`@import url("404.css");`);
+				await runW5(`@import url("404.css");`);
 			} catch (err) {
 				expect(() => {
 					throw err;
@@ -133,24 +128,24 @@ describe("clean-css-loader", () => {
 		});
 
 		it("should return warn", async () => {
-			const [css, map, warn] = await runW4("a{display:block");
+			const [css, map, warn] = await runW5("a{display:block");
 			expectOutput(css, "a{display:block}");
 			expect(warn).toEqual(["Missing '}' at 1:15."]);
-			expect(map).toEqual(undefined);
+			expect(map).toBeUndefined();
 		});
 
 		it("should skiped Warnings", async () => {
-			const [css, map, warn] = await runW4("a{display:block", {
-				skipWarn: true
+			const [css, map, warn] = await runW5("a{display:block", {
+				skipWarn: true,
 			});
 			expectOutput(css, "a{display:block}");
 			expect(warn).toEqual([]);
-			expect(map).toEqual(undefined);
+			expect(map).toBeUndefined();
 		});
 
 		it("should return sourceMap", async () => {
-			const [css, map, warn] = await runW4("a { display : block; }", {
-				sourceMap: true
+			const [css, map, warn] = await runW5("a { display : block; }", {
+				sourceMap: true,
 			});
 			expectOutput(css, "a{display:block}");
 			expect(warn).toEqual([]);
