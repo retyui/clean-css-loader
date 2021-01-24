@@ -5,7 +5,7 @@ const getConfig = (context, outputFilename, options = {}) => ({
 	context,
 	output: {
 		path: context,
-		filename: outputFilename
+		filename: outputFilename,
 	},
 	module: {
 		rules: [
@@ -15,12 +15,12 @@ const getConfig = (context, outputFilename, options = {}) => ({
 					"raw-loader",
 					{
 						loader: "clean-css-loader",
-						options
-					}
-				]
-			}
-		]
-	}
+						options,
+					},
+				],
+			},
+		],
+	},
 });
 
 module.exports = [
@@ -36,15 +36,15 @@ module.exports = [
 			level: {
 				1: {
 					all: true,
-					normalizeUrls: false
+					normalizeUrls: false,
 				},
 				2: {
-					restructureRules: true
-				}
-			}
+					restructureRules: true,
+				},
+			},
 		}
 	),
 	getConfig(resolve(__dirname, "./tests/beautify/"), "beautify.test.js", {
-		format: "beautify"
-	})
+		format: "beautify",
+	}),
 ];

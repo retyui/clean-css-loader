@@ -6,12 +6,12 @@ module.exports = {
 	env: {
 		node: true,
 		es6: true,
-		jest: true
+		jest: true,
 	},
 	parserOptions: {
-		ecmaVersion: 2017
+		ecmaVersion: 2021,
 	},
 	rules: {
-		"no-unused-vars": "warn"
-	}
+		"no-unused-vars": "warn",
+	},
 };
