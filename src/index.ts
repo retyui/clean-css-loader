@@ -1,7 +1,7 @@
 import CleanCSS from "clean-css";
 import { getOptions } from "loader-utils";
 import { validate } from "schema-utils";
-
+import type { RawSourceMap } from "source-map";
 import type { LoaderContext } from "webpack";
 import type { JSONSchema7 } from "schema-utils/declarations/validate";
 
@@ -15,6 +15,7 @@ type CleanCSSOptions = Omit<
 interface LoaderOptions extends CleanCSSOptions {
   skipWarn?: boolean;
   disable?: boolean;
+  sourceMap?: boolean;
 }
 
 interface SourceMap {
@@ -32,6 +33,16 @@ interface AdditionalData {
   webpackAST: object;
 }
 
+function parsePrevSourceMap(
+  prevSourceMap?: string | SourceMap
+): RawSourceMap | string | undefined {
+  if (prevSourceMap != null && typeof prevSourceMap === "object") {
+    return JSON.stringify(prevSourceMap);
+  }
+
+  return undefined;
+}
+
 function cleanCssLoader(
   this: LoaderContext<LoaderOptions>,
   content: string | Buffer,
@@ -44,24 +55,22 @@ function cleanCssLoader(
   const loaderOptions = getOptions(this) || {};
 
   validate(schema as JSONSchema7, loaderOptions, {
-    name: "group-css-media-queries-loader",
+    name: "clean-css-loader",
   });
 
-  const { disable, skipWarn, ...options } = loaderOptions;
+  const { sourceMap, disable, skipWarn, ...options } = loaderOptions;
+  const useSourceMap = Boolean(sourceMap ?? this.sourceMap);
 
   if (disable) {
     return callback(null, content, prevSourceMap, additionalData);
   }
 
   new CleanCSS({
-    returnPromise: true,
     ...options,
+    returnPromise: true,
+    sourceMap: useSourceMap,
   })
-    .minify(
-      content,
-      // @ts-ignore
-      prevSourceMap
-    )
+    .minify(content, parsePrevSourceMap(prevSourceMap))
     .then((output) => {
       if (!skipWarn && Array.isArray(output.warnings)) {
         output.warnings.forEach((warning) => {
@@ -69,13 +78,19 @@ function cleanCssLoader(
         });
       }
 
-      return callback(
-        null,
-        output.styles,
-        // @ts-ignore
-        output.sourceMap,
-        additionalData
-      );
+      let resultSourceMap;
+
+      if (useSourceMap && output.sourceMap) {
+        resultSourceMap = {
+          ...JSON.parse(output.sourceMap.toString()),
+          // @ts-ignore
+          sources: prevSourceMap?.sources || [this.resourcePath],
+          // @ts-ignore
+          sourcesContent: prevSourceMap?.sourcesContent || [content.toString()],
+        };
+      }
+
+      return callback(null, output.styles, resultSourceMap, additionalData);
     })
     .catch(callback);
 }

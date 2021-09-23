@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.1.0
+
+- Auto-configure `sourceMap` option, based on [`.devtool`](https://webpack.js.org/configuration/devtool/#devtool)
+
 ## 4.0.0
 
 - Migrate to the latest [`clean-css`](https://clean-css.github.io/) version `5.x.x`

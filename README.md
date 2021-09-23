@@ -29,7 +29,6 @@ Then add the plugin to your webpack config. For example:
 const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
-  mode: isProduction ? "production" : "development",
   module: {
     rules: [
       {
@@ -76,6 +75,10 @@ This option enables/disables minify, useful to easily disable on development mod
 #### `skipWarn: boolean`
 
 This option enables/disables output warnings (default: `false`)
+
+#### `sourceMap: boolean`
+
+Enables/Disables generation of source maps. (default: `compiler.devtool`)
 
 ## `CleanCSS` module options
 
