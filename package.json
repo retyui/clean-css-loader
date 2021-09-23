@@ -1,9 +1,9 @@
 {
 	"name": "clean-css-loader",
-	"version": "4.0.0",
+	"version": "4.1.0",
 	"main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "dependencies": {
+	"types": "lib/index.d.ts",
+	"dependencies": {
 		"clean-css": "^5.0.0"
 	},
 	"peerDependencies": {
@@ -19,7 +19,7 @@
 		}
 	},
 	"scripts": {
-    "pree2e": "yarn build",
+		"pree2e": "yarn build",
 		"e2e": "yarn update-e2e && yarn test",
 		"force-clean": "rimraf ./test/e2e/webpack*/node_modules/ ./test/e2e/webpack*/tests/**/*.test.js",
 		"install-sub": "yarn link && cd test/e2e/webpack5 && yarn && yarn build && cd ../../..",
@@ -36,7 +36,7 @@
 		"loader"
 	],
 	"repository": "https://github.com/retyui/clean-css-loader",
-  "author": "David <4661784+retyui@users.noreply.github.com>",
+	"author": "David <4661784+retyui@users.noreply.github.com>",
 	"license": "MIT",
 	"files": ["lib"],
 	"engines": {
@@ -53,6 +53,7 @@
 		"prettier": "^2.4.1",
 		"rimraf": "^3.0.2",
 		"schema-utils": "^3.1.1",
+		"source-maps": "^1.0.12",
 		"typescript": "^4.4.3",
 		"webpack": "^5.53.0"
 	}

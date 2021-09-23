@@ -19,8 +19,7 @@ const runW5 = (input, options = {}) =>
     );
   });
 
-const expectOutput = (input, output) =>
-  expect(input.replace(/\r\n/g, "\n")).toEqual(output);
+const expectOutput = (input, output) => expect(input.replace(/\r\n/g, "\n")).toEqual(output);
 
 describe("clean-css-loader", () => {
   describe("webpack 5", () => {
@@ -92,9 +91,7 @@ describe("clean-css-loader", () => {
       });
       expectOutput(css, "a{display:block}");
       expect(warn).toEqual([]);
-      expect(map.toString()).toEqual(
-        `{"version":3,"sources":["$stdin"],"names":[],"mappings":"AAAA,EAAI,QAAU"}`
-      );
+      expect(map).toEqual({ version: 3, sources: [undefined], names: [], mappings: "AAAA,EAAI,QAAU", sourcesContent: ["a { display : block; }"] });
     });
   });
 });
