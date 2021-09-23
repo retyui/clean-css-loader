@@ -1,24 +1,33 @@
 {
 	"name": "clean-css-loader",
-	"version": "3.0.0",
+	"version": "4.0.0",
 	"main": "lib/index.js",
-	"dependencies": {
-		"clean-css": "^4.2.3",
-		"loader-utils": "^2.0.0"
+  "types": "lib/index.d.ts",
+  "dependencies": {
+		"clean-css": "^5.0.0"
 	},
 	"peerDependencies": {
-		"webpack": ">=1.0.0"
+		"loader-utils": "^1.0.0 || ^2.0.0",
+		"webpack": ">=2.0.0"
+	},
+	"peerDependenciesMeta": {
+		"webpack": {
+			"optional": true
+		},
+		"loader-utils": {
+			"optional": true
+		}
 	},
 	"scripts": {
-		"e2e": "yarn build && yarn update-e2e && yarn test",
+    "pree2e": "yarn build",
+		"e2e": "yarn update-e2e && yarn test",
 		"force-clean": "rimraf ./test/e2e/webpack*/node_modules/ ./test/e2e/webpack*/tests/**/*.test.js",
-		"install-sub": "yarn link && cd ./test/e2e/webpack1 && yarn && yarn link clean-css-loader && yarn build && cd ../webpack5 && yarn && yarn link clean-css-loader && yarn build && cd ../../..",
+		"install-sub": "yarn link && cd test/e2e/webpack5 && yarn && yarn build && cd ../../..",
 		"update-e2e": "yarn force-clean && yarn install-sub",
 		"prebuild": "rimraf ./lib",
-		"build": "babel src --out-dir lib",
-		"pretest": "yarn build",
-		"test": "jest",
-		"precommit": "lint-staged"
+		"build": "tsc",
+		"postbuild": "prettier --write ./lib",
+		"test": "jest"
 	},
 	"description": "CleanCSS loader module for webpack",
 	"keywords": [
@@ -36,22 +45,17 @@
 		"node": ">= 10.13.0"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.15.4",
-		"@babel/core": "^7.15.5",
-		"@babel/preset-env": "^7.15.4",
-		"babel-eslint": "^10.1.0",
-		"babel-jest": "^27.1.0",
-		"babel-plugin-add-module-exports": "^1.0.4",
-		"eslint": "^7.32.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-config-webpack": "^1.2.5",
-		"eslint-plugin-import": "^2.24.2",
-		"eslint-plugin-prettier": "^4.0.0",
-		"husky": "^7.0.2",
+		"@tsconfig/node10": "^1.0.8",
+		"@types/clean-css": "^4.2.5",
+		"@types/loader-utils": "^2.0.3",
+		"@types/node": "^16.9.6",
+		"@types/schema-utils": "^2.4.0",
 		"jest": "^27.1.0",
-		"lint-staged": "^11.1.2",
-		"npm-run-all": "^4.1.5",
-		"prettier": "^2.3.2",
-		"rimraf": "^3.0.2"
+		"loader-utils": "^2.0.0",
+		"prettier": "^2.4.1",
+		"rimraf": "^3.0.2",
+		"schema-utils": "^3.1.1",
+		"typescript": "^4.4.3",
+		"webpack": "^5.53.0"
 	}
 }

@@ -2,6 +2,13 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.0.0
+
+- Drop support `webpack@1.x.x`
+- Add Typescript
+- Add Schema validation
+- Migrate to the latest [`clean-css`](https://clean-css.github.io/) version `5.x.x`
+
 ## 3.0.0
 
 - Drop support node v8

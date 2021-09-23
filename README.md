@@ -11,64 +11,54 @@ A [clean-css](https://github.com/jakubpawlowicz/clean-css) loader for [webpack](
 # clean-css-loader
 
 [![npm](https://img.shields.io/npm/v/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
+[![CI](https://github.com/retyui/clean-css-loader/actions/workflows/nodejs.yml/badge.svg)](https://github.com/retyui/clean-css-loader/actions/workflows/nodejs.yml)
 [![npm clean-css-loader](https://img.shields.io/npm/dm/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
-[![AppVeyor](https://img.shields.io/appveyor/ci/retyui/clean-css-loader.svg?label=windows)](https://ci.appveyor.com/project/retyui/clean-css-loader)
-[![Travis](https://img.shields.io/travis/retyui/clean-css-loader.svg?label=unix)](https://travis-ci.org/retyui/clean-css-loader)
 
-## Install
+## Getting Started
+
+To begin, you'll need to install clean-css-loader:
 
 ```bash
 yarn add -D clean-css-loader
 ```
 
-## Usage
+Then add the plugin to your webpack config. For example:
 
-Use the loader either via your webpack config, CLI or inline.
-
-### Via webpack config (recommended)
-
-**webpack.config.js**
-
-```js
-const isProductionMode = process.env.NODE_ENV === "production";
-
-const cssLoaders = ["style-loader", "css-loader"];
-
-if (isProductionMode) {
-  // push loader for production mode only
-  cssLoaders.push("clean-css-loader");
-
-  // exmaple with options
-  cssLoaders.push({
-    loader: "clean-css-loader",
-    options: {
-      compatibility: "ie9",
-      level: 2,
-      inline: ["remote"],
-    },
-  });
-}
+```tsx
+// webpack.config.js
+const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
-  mode: isProductionMode ? "production" : "development",
+  mode: isProduction ? "production" : "development",
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: cssLoaders,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "clean-css-loader",
+            options: {
+              // Loader options
+              disable: !isProduction,
+              skipWarn: false,
+
+              // CleasCSS options
+              compatibility: "ie9",
+              level: 2,
+              inline: ["remote"],
+              //...
+            },
+          },
+        ],
       },
     ],
   },
 };
 ```
 
-**In your application**
-
-```js
-import cssMin from "style.css";
-```
-
-### CLI
+### CLI usage
 
 ```bash
 webpack --module-bind 'css=style-loader!css-loader!clean-css-loader'
@@ -90,35 +80,16 @@ import cssMin from "style-loader!css-loader!clean-css-loader!./style.css";
 
 ## Options
 
-### `skipWarn` default: `false`
+#### `disable`
 
-This option disable output warnings
+This option enables/disables minify, useful to easily disable on development mode (default: `false`)
 
-More option: [https://github.com/jakubpawlowicz/clean-css#constructor-options](https://github.com/jakubpawlowicz/clean-css#constructor-options)
+#### `skipWarn`
 
-## Webpack 1.x
+This option enables/disables output warnings (default: `false`)
 
-**Example config (for webpack 1.x):**
+---
 
-```js
-module.exports = {
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: "css!clean-css",
-      },
-      {
-        test: /\.styl$/,
-        loader: "css!clean-css!stylus?reslve url",
-      },
-      //...
-    ],
-    // Example Set options (Key "clean-css" or cleancss or CleanCSS):
-    "clean-css": {
-      debug: true,
-      mediaMerging: true,
-    },
-  },
-};
-```
+## `CleanCSS` module options
+
+- [clean-css/clean-css#constructor-options](https://github.com/jakubpawlowicz/clean-css#constructor-options)

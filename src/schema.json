@@ -1,0 +1,232 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CleanCSS Loader options",
+  "type": "object",
+  "properties": {
+    "skipWarn": {
+      "description": "Loader option that enables/disables CleanCSS output warnings.",
+      "type": "boolean",
+      "default": false
+    },
+    "disable": {
+      "description": "Loader option that enables/disables CleanCSS minify.",
+      "type": "boolean",
+      "default": false
+    },
+    "compatibility": {
+      "description": "Enables/Disables generation of source maps.",
+      "link": "https://github.com/clean-css/clean-css#compatibility-modes",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "units": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "ch": {
+                  "description": "controls treating `ch` as a supported unit",
+                  "type": "boolean"
+                },
+                "in": {
+                  "description": "controls treating `in` as a supported unit",
+                  "type": "boolean"
+                },
+                "pc": {
+                  "description": "controls treating `pc` as a supported unit",
+                  "type": "boolean"
+                },
+                "pt": {
+                  "description": "controls treating `pt` as a supported unit",
+                  "type": "boolean"
+                },
+                "rem": {
+                  "description": "controls treating `rem` as a supported unit",
+                  "type": "boolean"
+                },
+                "vh": {
+                  "description": "controls treating `vh` as a supported unit",
+                  "type": "boolean"
+                },
+                "vm": {
+                  "description": "controls treating `vm` as a supported unit",
+                  "type": "boolean"
+                },
+                "vmax": {
+                  "description": "controls treating `vmax` as a supported unit",
+                  "type": "boolean"
+                },
+                "vmin": {
+                  "description": "controls treating `vmin` as a supported unit",
+                  "type": "boolean"
+                }
+              }
+            },
+            "colors": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "hexAlpha": {
+                  "type": "boolean",
+                  "description": "controls 4- and 8-character hex color support"
+                },
+                "opacity": {
+                  "type": "boolean",
+                  "description": "controls `rgba()` / `hsla()` color support"
+                }
+              }
+            },
+            "properties": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "backgroundClipMerging": {
+                  "type": "boolean",
+                  "description": "controls background-clip merging into shorthand"
+                },
+                "backgroundOriginMerging": {
+                  "type": "boolean",
+                  "description": "controls background-origin merging into shorthand"
+                },
+                "backgroundSizeMerging": {
+                  "type": "boolean",
+                  "description": "controls background-size merging into shorthand"
+                },
+                "colors": {
+                  "type": "boolean",
+                  "description": "controls color optimizations"
+                },
+                "ieBangHack": {
+                  "type": "boolean",
+                  "description": "controls keeping IE bang hack"
+                },
+                "ieFilters": {
+                  "type": "boolean",
+                  "description": "controls keeping IE `filter` / `-ms-filter`"
+                },
+                "iePrefixHack": {
+                  "type": "boolean",
+                  "description": "controls keeping IE prefix hack"
+                },
+                "ieSuffixHack": {
+                  "type": "boolean",
+                  "description": "controls keeping IE suffix hack"
+                },
+                "merging": {
+                  "type": "boolean",
+                  "description": "controls property merging based on understandability"
+                },
+                "shorterLengthUnits": {
+                  "type": "boolean",
+                  "description": "controls shortening pixel units into `pc`, `pt`, or `in` units"
+                },
+                "spaceAfterClosingBrace": {
+                  "type": "boolean",
+                  "description": "controls keeping space after closing brace - `url() no-repeat` into `url()no-repeat`"
+                },
+                "urlQuotes": {
+                  "type": "boolean",
+                  "description": "controls keeping quoting inside `url()`"
+                },
+                "zeroUnits": {
+                  "type": "boolean",
+                  "description": "controls removal of units '0' value"
+                }
+              }
+            },
+            "selectors": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "adjacentSpace": {
+                  "description": "controls extra space before `nav` element",
+                  "type": "boolean"
+                },
+                "ie7Hack": {
+                  "description": "controls removal of IE7 selector hacks, e.g. `*+html...`",
+                  "type": "boolean"
+                },
+                "mergeablePseudoClasses": {
+                  "description": "controls a whitelist of mergeable pseudo classes",
+                  "type": "array"
+                },
+                "mergeablePseudoElements": {
+                  "description": "controls a whitelist of mergeable pseudo elements",
+                  "type": "array"
+                },
+                "mergeLimit": {
+                  "description": "controls maximum number of selectors in a single rule (since 4.1.0)",
+                  "type": "number"
+                },
+                "multiplePseudoMerging": {
+                  "description": "controls merging of rules with multiple pseudo classes / elements (since 4.1.0)",
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "fetch": {
+      "description": "The fetch option accepts a function which handles remote resource fetching, e.g.",
+      "link": "https://github.com/clean-css/clean-css#fetch-option",
+      "instanceof": "Function"
+    },
+    "format": {
+      "description": "By default output CSS is formatted without any whitespace unless a format option is given.",
+      "link": "https://github.com/clean-css/clean-css#formatting-options",
+      "anyOf": [
+        { "type": "string" },
+        { "type": "boolean" },
+        { "type": "object", "additionalProperties": true }
+      ]
+    },
+    "inline": {
+      "link": "https://github.com/clean-css/clean-css#inlining-options",
+      "description": "inline option whitelists which @import rules will be processed",
+      "anyOf": [{ "type": "boolean" }, { "type": "array" }]
+    },
+    "inlineRequest": {
+      "description": "controls extra options for inlining remote @import rules, can be any of HTTP(S) request options",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "inlineTimeout": {
+      "description": " controls number of milliseconds after which inlining a remote @import fails; defaults to 5000",
+      "type": "number"
+    },
+    "level": {
+      "link": "https://github.com/clean-css/clean-css#optimization-levels",
+      "anyOf": [
+        { "type": "number" },
+        { "type": "object", "additionalProperties": true }
+      ]
+    },
+    "rebase": {
+      "link": "https://github.com/clean-css/clean-css#constructor-options",
+      "description": "controls URL rebasing; defaults to false",
+      "type": "boolean"
+    },
+    "rebaseTo": {
+      "description": "controls a directory to which all URLs are rebased, most likely the directory under which the output file will live; defaults to the current directory",
+      "link": "https://github.com/clean-css/clean-css#constructor-options",
+      "type": "string"
+    },
+    "sourceMap": {
+      "description": "Enables/Disables generation of source maps.",
+      "link": "https://github.com/clean-css/clean-css#constructor-options",
+      "type": "boolean"
+    },
+    "sourceMapInlineSources": {
+      "type": "boolean",
+      "link": "https://github.com/clean-css/clean-css#constructor-options",
+      "description": "controls embedding sources inside a source map's sourcesContent field; defaults to false"
+    }
+  },
+  "additionalProperties": true
+}
