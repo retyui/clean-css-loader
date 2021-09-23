@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/node10/tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "removeComments": true,
+    "declaration": true,
+    "esModuleInterop": true
+  },
+  "include": ["./src"]
+}

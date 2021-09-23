@@ -1,22 +1,4 @@
-import loader from "../../src/index";
-
-const runW1 = (input, module) =>
-  new Promise((res) => {
-    const arrayWarn = [];
-    let options;
-    if (module) {
-      options = { module };
-    }
-    loader.call(
-      {
-        options,
-        async: () => (err, css, map) => {
-          res([css, map, arrayWarn]);
-        },
-      },
-      input
-    );
-  });
+const loader = require("../../lib/index");
 
 const runW5 = (input, options = {}) =>
   new Promise((res, rej) => {
@@ -36,51 +18,12 @@ const runW5 = (input, options = {}) =>
       input
     );
   });
+
 const expectOutput = (input, output) =>
   expect(input.replace(/\r\n/g, "\n")).toEqual(output);
 
 describe("clean-css-loader", () => {
-  describe("webpack 1", () => {
-    it("should minimize css", async () => {
-      const [css, map, warn] = await runW1("div { background: white; }");
-      expectOutput(css, "div{background:#fff}");
-      expect(warn).toEqual([]);
-      expect(map).toBeUndefined();
-    });
-
-    it("should return restructured css CleanCSS", async () => {
-      const [css, map, warn] = await runW1(
-        `.one {
-	padding: 0;
-}
-.two {
-	margin: 0;
-}
-.one {
-	margin-bottom: 3px;
-}
-`,
-        {
-          CleanCSS: {
-            level: {
-              1: {
-                all: true,
-                normalizeUrls: false,
-              },
-              2: {
-                restructureRules: true,
-              },
-            },
-          },
-        }
-      );
-      expectOutput(css, ".two{margin:0}.one{padding:0;margin-bottom:3px}");
-      expect(warn).toEqual([]);
-      expect(map).toBeUndefined();
-    });
-  });
-
-  describe("webpack 4", () => {
+  describe("webpack 5", () => {
     it("should minimize css", async () => {
       const [css, map, warn] = await runW5("div { background: white; }");
       expectOutput(css, "div{background:#fff}");
@@ -130,7 +73,7 @@ describe("clean-css-loader", () => {
     it("should return warn", async () => {
       const [css, map, warn] = await runW5("a{display:block");
       expectOutput(css, "a{display:block}");
-      expect(warn).toEqual(["Missing '}' at 1:15."]);
+      expect(warn).toEqual([new Error(`Missing '}' at 1:15.`)]);
       expect(map).toBeUndefined();
     });
 
