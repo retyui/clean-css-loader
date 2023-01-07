@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.2.0
+
+- Add support [`loader-utils@3.x.x`](https://github.com/webpack/loader-utils/releases/tag/v3.0.0)
+- Drop Node.js 10 support
+
 ## 4.1.0
 
 - Auto-configure `sourceMap` option, based on [`.devtool`](https://webpack.js.org/configuration/devtool/#devtool)
