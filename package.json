@@ -4,9 +4,10 @@
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
 	"dependencies": {
-		"clean-css": "^5.0.0"
+    "clean-css": "^5.0.0"
 	},
 	"peerDependencies": {
+    "schema-utils": "^3.0.0 || ^4.0.0",
 		"loader-utils": "^1.0.0 || ^2.0.0 || ^3.0.0",
 		"webpack": ">=2.0.0"
 	},
@@ -14,9 +15,12 @@
 		"webpack": {
 			"optional": true
 		},
-		"loader-utils": {
-			"optional": true
-		}
+    "loader-utils": {
+      "optional": true
+    },
+    "schema-utils": {
+      "optional": true
+    }
 	},
 	"scripts": {
 		"pree2e": "yarn build",
