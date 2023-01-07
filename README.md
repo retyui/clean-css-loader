@@ -12,6 +12,7 @@ A [clean-css](https://github.com/jakubpawlowicz/clean-css) loader for [webpack](
 
 [![npm](https://img.shields.io/npm/v/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
 [![CI](https://github.com/retyui/clean-css-loader/actions/workflows/nodejs.yml/badge.svg)](https://github.com/retyui/clean-css-loader/actions/workflows/nodejs.yml)
+[![clean-css-loader install size](https://packagephobia.com/badge?p=clean-css-loader)](https://packagephobia.com/result?p=clean-css-loader)
 [![npm clean-css-loader](https://img.shields.io/npm/dm/clean-css-loader.svg)](https://www.npmjs.com/package/clean-css-loader)
 
 ## Getting Started
