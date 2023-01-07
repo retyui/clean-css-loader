@@ -5,6 +5,7 @@ const runW5 = (input, options = {}) =>
     const arrayWarn = [];
     loader.call(
       {
+        getOptions: () => options,
         query: options,
         emitWarning: (warnStr) => arrayWarn.push(warnStr),
         async: () => (err, css, map) => {

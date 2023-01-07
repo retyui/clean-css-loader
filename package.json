@@ -1,13 +1,13 @@
 {
 	"name": "clean-css-loader",
-	"version": "4.1.0",
+	"version": "4.2.0",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
 	"dependencies": {
 		"clean-css": "^5.0.0"
 	},
 	"peerDependencies": {
-		"loader-utils": "^1.0.0 || ^2.0.0",
+		"loader-utils": "^1.0.0 || ^2.0.0 || ^3.0.0",
 		"webpack": ">=2.0.0"
 	},
 	"peerDependenciesMeta": {
@@ -38,23 +38,25 @@
 	"repository": "https://github.com/retyui/clean-css-loader",
 	"author": "David <4661784+retyui@users.noreply.github.com>",
 	"license": "MIT",
-	"files": ["lib"],
+	"files": [
+		"lib"
+	],
 	"engines": {
-		"node": ">= 10.0.0"
+		"node": ">= 12.0.0"
 	},
 	"devDependencies": {
-		"@tsconfig/node10": "^1.0.8",
-		"@types/clean-css": "^4.2.5",
+		"@tsconfig/node12": "^1.0.11",
+		"@types/clean-css": "^4.2.6",
 		"@types/loader-utils": "^2.0.3",
-		"@types/node": "^16.9.6",
+		"@types/node": "^16.18.11",
 		"@types/schema-utils": "^2.4.0",
-		"jest": "^27.1.0",
-		"loader-utils": "^2.0.0",
-		"prettier": "^2.4.1",
+		"jest": "^29.3.1",
+		"loader-utils": "^3.2.1",
+		"prettier": "^2.8.2",
 		"rimraf": "^3.0.2",
-		"schema-utils": "^3.1.1",
+		"schema-utils": "^4.0.0",
 		"source-maps": "^1.0.12",
-		"typescript": "^4.4.3",
-		"webpack": "^5.53.0"
+		"typescript": "^4.9.4",
+		"webpack": "^5.75.0"
 	}
 }

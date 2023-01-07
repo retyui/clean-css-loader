@@ -52,7 +52,8 @@ function cleanCssLoader(
   const callback = this.async();
   // 1.x.x return null if empty query
   // 2.x.x return empty object if empty query
-  const loaderOptions = getOptions(this) || {};
+  // 3.x.x removed `getOptions` need to use `this.getOptions`
+  const loaderOptions = (typeof this.getOptions === 'function' ? this.getOptions() : getOptions?.(this)) || {};
 
   validate(schema as JSONSchema7, loaderOptions, {
     name: "clean-css-loader",
