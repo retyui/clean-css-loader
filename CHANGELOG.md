@@ -2,6 +2,18 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.2.1
+
+- Fix passing loader options when using `this.getOptions()` from webpack 5.x.x
+  
+  ```tsx
+  import "clean-css-loader?skipWarn=true!./style.css"; 
+  // {skipWarn: true  } loader-utils@2.x.x
+  // {skipWarn: 'true'} webpack@5.x.x, unexpected behavior :(
+  ```
+
+  > `loader-utils` has specific behavior for parsing query strings (`true`, `false` and `null` won't be parsed as string but as a primitive value)
+
 ## 4.2.0
 
 - Add support [`loader-utils@3.x.x`](https://github.com/webpack/loader-utils/releases/tag/v3.0.0)
