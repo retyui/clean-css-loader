@@ -43,6 +43,34 @@ function parsePrevSourceMap(
   return undefined;
 }
 
+function getLoaderOptions(_that: LoaderContext<LoaderOptions>): LoaderOptions {
+  // 3.x.x removed `getOptions` need to use `this.getOptions`
+  if(typeof getOptions === 'function') {
+    // 1.x.x return null if empty query
+    // 2.x.x return empty object if empty query
+    return getOptions(_that) || {};
+  }
+
+  if(typeof _that.getOptions === 'function') {
+    const rawOptions:LoaderOptions = _that.getOptions() || {};
+
+    // `loader-utils` has specific behavior for parsing query strings
+    //   (true, false and null won't be parsed as string but as a primitive value)
+    //   https://webpack.js.org/migrate/5/#getoptions-method-for-loaders
+    Object.keys(rawOptions).forEach((key) => {
+      const value = rawOptions[key as keyof LoaderOptions];
+
+      if(['false','true','null'].includes(value as string)) {
+        rawOptions[key as keyof LoaderOptions] = JSON.parse(value as string);
+      }
+    });
+
+    return rawOptions;
+  }
+
+  return {};
+}
+
 function cleanCssLoader(
   this: LoaderContext<LoaderOptions>,
   content: string | Buffer,
@@ -50,10 +78,8 @@ function cleanCssLoader(
   additionalData?: AdditionalData
 ): void {
   const callback = this.async();
-  // 1.x.x return null if empty query
-  // 2.x.x return empty object if empty query
-  // 3.x.x removed `getOptions` need to use `this.getOptions`
-  const loaderOptions = (typeof this.getOptions === 'function' ? this.getOptions() : getOptions?.(this)) || {};
+
+  const loaderOptions = getLoaderOptions(this);
 
   validate(schema as JSONSchema7, loaderOptions, {
     name: "clean-css-loader",

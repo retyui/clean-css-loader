@@ -77,7 +77,7 @@ describe("clean-css-loader", () => {
       expect(map).toBeUndefined();
     });
 
-    it("should skiped Warnings", async () => {
+    it("should skipped Warnings", async () => {
       const [css, map, warn] = await runW5("a{display:block", {
         skipWarn: true,
       });
@@ -85,6 +85,16 @@ describe("clean-css-loader", () => {
       expect(warn).toEqual([]);
       expect(map).toBeUndefined();
     });
+
+    it("should skipped Warnings and parse bool params", async () => {
+      const [css, map, warn] = await runW5("a{display:block", {
+        skipWarn: 'true',
+      });
+      expectOutput(css, "a{display:block}");
+      expect(warn).toEqual([]);
+      expect(map).toBeUndefined();
+    });
+
 
     it("should return sourceMap", async () => {
       const [css, map, warn] = await runW5("a { display : block; }", {
