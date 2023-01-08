@@ -63,8 +63,10 @@ Or using plugin [inline](https://webpack.js.org/concepts/loaders/#inline):
 ```tsx
 // default
 import "style-loader!css-loader!clean-css-loader!./style.css";
-// with options
-import "style-loader!css-loader!clean-css-loader?level=2!./style.css";
+// with options (query params)
+import "style-loader!css-loader!clean-css-loader?level=2&skipWarn=true!./style.css";
+// with options (options as JSON)
+import "style-loader!css-loader!clean-css-loader?{\"skipWarn\": true,\"level\":2}!./style.css";
 ```
 
 ## Options
